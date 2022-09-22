@@ -25,7 +25,47 @@ body {
   border: 10px solid black;
   border-radius: 20%;
 }
+dialog{
+  display: inline-block;
+  height: 500px;
+  width: 600px;
+  border: 15px solid black;
+  border-radius: 20%;
+}
+.concept{
+  margin: 10% 15%;
+  font-family: 'Press Start 2P';
+  font-size: 1rem;
+}
+.instruction {
+  font-family: 'Press Start 2P';
+  background-color: #FEF2BF;
+  border: inline;
+  border-width: thick;
+  color: #7F5283;
+  padding: 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 25px;
+  margin: 4px 3px;
+  border-radius: 50%;
+}
+.closeInstruction{
+  border: inline;
+  border-width: thick;
+  padding: 8px;
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 20%;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
 
+}
+.instruct{
+  text-align: right;
+}
 .game-over {
   background-color: red;
   opacity: 0.8;

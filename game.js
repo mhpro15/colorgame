@@ -1,17 +1,17 @@
 var buttonColours = ["red", "blue", "green", "yellow"];
-var gamePattern = [];
-var randomChosenColor;
-var userChosenColor;
-var userClickPattern = [];
-var gameStop = 0;
-var count = 0;
+var gamePattern = []; //color that have been shown
+var randomChosenColor; // color that will be generated
+var userChosenColor; //color that user clicked
+var userClickPattern = []; //user clicked pattern
+var gameStop = 0; //keep the game load correctly
+var count = 0; //update the number of color in sequence
 
-
+// event to take keyboard press and start or reset the game
 $(document).keypress(function(){
   if (gamePattern.length < 1)
   {
     gameStop = 0;
-    $("body").removeClass("game-over");
+    $("body").removeClass("game-over");   //if reset
     $("#level-title").text("Level 1");
     setTimeout(function () {
       randomChosenColor = nextSequence();
@@ -20,7 +20,7 @@ $(document).keypress(function(){
     }, 500);
   }
 });
-
+// also start or reset but click on h1 title
 $("h1").click(function(){
   if (gamePattern.length < 1)
   {
@@ -35,6 +35,17 @@ $("h1").click(function(){
   }
 });
 
+//instruction hide / appear
+$("dialog").hide();
+$(".closeInstruction").click(function(){
+  $("dialog").fadeOut();
+});
+$(".instruction").click(function(){
+  $("dialog").fadeIn();
+});
+
+
+//event when click on button
 $(".btn").click(function(){
   if (gamePattern.length >= 1 && gameStop ==0)
   {
@@ -42,10 +53,12 @@ $(".btn").click(function(){
     userClickPattern.push(userChosenColor);
     animatePress(userChosenColor);
     sound(userChosenColor);
+    // game over when user pick the wrong color compare with the game pattern
     if (userClickPattern[count] != gamePattern[count] || userClickPattern.length > gamePattern.length)
     {
       gameOver();
     }
+    //game continue to generate new color if the last element of user sequence is correct,
     else{
       count ++;
       if (userClickPattern[gamePattern.length-1] == gamePattern[gamePattern.length-1] )
@@ -69,6 +82,7 @@ $(".btn").click(function(){
 
 })
 
+//function to generate new color
 function nextSequence(){
   var randomNumber = Math.floor(Math.random()*4);
   var randomColor = buttonColours[randomNumber];
@@ -76,19 +90,24 @@ function nextSequence(){
   console.log(gamePattern);
   return randomColor;
 }
+//function to animate flash button
 function animating(){
   $("."+randomChosenColor).hide().fadeIn(50);
 }
+//function to play sound
 function sound(color){
   var sound = new Audio("sounds/"+color+".mp3");
   sound.play();
 }
+//function of animation when click button
 function animatePress(currentColour){
   $("."+currentColour).addClass("pressed");
   setTimeout(function () {
     $("."+currentColour).removeClass("pressed");
   }, 100);
 }
+
+//function when user lose, reset
 function gameOver(){
   $("body").addClass("game-over");
   sound("wrong");
