@@ -21,6 +21,19 @@ $(document).keypress(function(){
   }
 });
 
+$("h1").click(function(){
+  if (gamePattern.length < 1)
+  {
+    gameStop = 0;
+    $("body").removeClass("game-over");
+    $("#level-title").text("Level 1");
+    setTimeout(function () {
+      randomChosenColor = nextSequence();
+      animating();
+      sound(randomChosenColor);
+    }, 500);
+  }
+});
 
 $(".btn").click(function(){
   if (gamePattern.length >= 1 && gameStop ==0)
