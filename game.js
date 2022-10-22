@@ -92,7 +92,7 @@ function nextSequence(){
 }
 //function to animate flash button
 function animating(){
-  $("."+randomChosenColor).hide().fadeIn(50);
+  $("."+randomChosenColor).hide().fadeIn(120);
 }
 //function to play sound
 function sound(color){
